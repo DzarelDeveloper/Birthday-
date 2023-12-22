@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'Luckiest Guy', cursive;
+  margin-bottom: 0.3rem;
+  font-size: 4rem;
+  color: #3366FF;
+  letter-spacing: 4px;
+  text-align: center;
+}
+
+button {
+  border: none;
+  padding: 0.75em;
+  background: #ff6347;
+  color: white;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  font-family: monospace;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #e3563d;
+}
+
+@media screen and (max-width: 700px) {
+  h1 {
+    font-size: 3rem;
+  }
+  button {
+    font-size: 1rem;
+  }
+}
