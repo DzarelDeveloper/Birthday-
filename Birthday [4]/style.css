@@ -1,0 +1,254 @@
+* {
+    box-sizing: border-box;
+  }
+
+h1 {
+  font-family: 'Pacifico';
+  font-weight:700;
+  text-align: center;
+}
+  .center-letter {
+    margin: 8px;
+    font-family: Arial, Helvetica, Sans-serif;
+    font-weight:400;
+    line-height: 180%;
+    color: white;
+position: relative;
+top: -100px;
+z-index: 5;
+  }
+  #wrapper {
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  .envelope {
+    width: 400px;
+    /*width: 200px;*/
+    height: 300px;
+    /*height: 100px;*/
+    margin: 270px auto 0;
+    background: #ddd;
+    box-shadow:
+      0 0 1px rgba(0,0,0,0.5),
+      0 1px 3px rgba(0,0,0,0.25);
+    position: relative;
+    perspective: 800px;
+  }
+  .envelope:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 0 solid rgba(0,0,0,0.25);
+    border-width: 145px 200px;
+    /*border-width: 45px 200px;*/
+
+    border-top-color: transparent;
+    z-index: 2;
+  }
+
+  .envelope .flap {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    border: 0 solid transparent;
+    /*border-width: 50px 100px;*/
+    border-width: 150px 200px;
+
+    z-index: 3;
+  }
+  .envelope .flap.front {
+    border-left-color: #eee;
+    border-right-color: #eee;
+    border-bottom-color: #ccc;
+    z-index: 3;
+  }
+  .envelope .flap.front:after {
+    content: '';
+    width: 100%;
+    height: 0;
+    position: absolute;
+    left: -200px;
+    bottom: -150px;
+    border: 0 solid transparent;
+    border-width: 149px 200px;
+  /*
+
+    left: -100px;
+    bottom: -50px;
+    border: 0 solid transparent;
+    border-width: 49px 100px;*/
+    border-bottom-color: #eee;
+  }
+
+  .envelope .flap.top {
+    border-top-width: 55px;
+    border-top-color: #aaa;
+    z-index: 3;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    -webkit-transform-origin-y: top;
+    /*transform-origin-y: top;*/
+    transform-origin: center top;
+
+    perspective: 800;
+    transform-style: preserve-3d;
+  }
+  .envelope.open .flap.top {
+    animation-name: flip;
+  }
+  .envelope .flap.top:after {
+    content: '';
+    position: absolute;
+    left: -200px; /* border-left-width */
+    top: -55px; /* border-top-width */
+    width: 100%;
+    height: 0;
+    border: 0 solid transparent;
+    border-width: 154px 200px;
+    border-top-color: #eee;
+  }
+
+  .envelope .letter {
+    position: absolute;
+    width: 394px;
+    height: 284px;
+    background: #0075B6;
+    top: 8px;
+    left: 3px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  /*display: none; */
+  /* temp */
+    z-index: 1;
+    animation-duration: 2s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    transform-style: preserve-3d;
+  }
+  .envelope.open .letter {
+    animation-name: remove;
+    z-index: 1;
+  }
+  .envelope .letter:before,
+  .envelope .letter:after {
+    content: '';
+    position: absolute;
+    width: 392px;
+    height: 50%;
+    left: -1px;
+    background: #0075B6;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+   /*background: url('http://www.placecage.com/c/400/143');*/
+    animation-duration: 1s;
+    animation-delay: 4s;
+
+    animation-fill-mode: forwards;
+    -webkit-transform-origin-y: top;
+    /*transform-origin-y: top;*/
+    transform-origin: center top;
+
+    transform-style: preserve-3d;
+    /*transform: rotateX(10deg);*/
+  }
+  .envelope .letter:before {
+    z-index: 2;
+    border-bottom: 1px solid #ccc;
+  }
+  .envelope.open .letter:before {
+    animation-name: fold-up;
+  }
+  .envelope .letter:after {
+    animation-delay: 5s;
+    animation-fill-mode: forwards;
+    -webkit-transform-origin-y: bottom;
+    /*transform-origin-y: bottom;*/
+    transform-origin: center bottom;
+
+    /*transform: rotateX(-5deg);*/
+    bottom: 0;
+  }
+  .envelope.open .letter:after {
+    animation-name: fold-down;
+    border-top: 1px solid #ccc;
+
+  }
+
+  @keyframes flip {
+    100% {
+      transform: rotateX(180deg);
+      z-index: 1;
+    }
+  }
+
+  @keyframes remove {
+    50% {
+      top: -270px;
+    }
+    100% {
+      top: 8px;
+      z-index: 3;
+    }
+  }
+
+  @keyframes fold-up {
+    from {
+    }
+    to {
+      transform: rotateX(180deg);
+    }
+  }
+
+  @keyframes fold-down {
+    from {
+    }
+    to {
+      transform: rotateX(-180deg);
+    }
+  }
+
+  .animate-reveal {
+    opacity: 0;
+    -webkit-animation: reveal 4000ms cubic-bezier(0, 1, 0.5, 1) 1 normal forwards;
+       -moz-animation: reveal 4000ms ease-in 1 normal forwards;
+         -o-animation: reveal 4000ms cubic-bezier(0, 1, 0.5, 1) 1 normal forwards;
+            animation: reveal 4000ms cubic-bezier(0, 1, 0.5, 1) 1 normal forwards;
+  }
+
+  .animate-first {
+    -webkit-animation-delay: 5600ms;
+       -moz-animation-delay: 5600ms;
+         -o-animation-delay: 5600ms;
+            animation-delay: 5600ms;
+  }
+
+  .animate-second {
+    position: relative;
+    top: -100px;
+    -webkit-animation-delay: 7000ms;
+       -moz-animation-delay: 7000ms;
+         -o-animation-delay: 7000ms;
+            animation-delay: 7000ms;
+  }
+
+
+  @keyframes reveal {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(20%);
+         -moz-transform: translateY(20%);
+           -o-transform: translateY(20%);
+              transform: translateY(20%);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0);
+         -moz-transform: translateY(0);
+           -o-transform: translateY(0);
+              transform: translateY(0);
+    }
+  }
