@@ -29,35 +29,16 @@ body {
   overflow: hidden;
 }
 
-@media only screen and (min-width: 1000px) {
-  .card {
-    flex-direction: row-reverse;
-  }
-  .card img.birthday {
-    width: 100%;
-    max-width: 50vw;
-    max-height: unset;
-  }
-}
-
-@media only screen and (max-height: 640px) {
-  .card {
-    flex-direction: row-reverse;
-  }
-  .card img.birthday {
-    width: 100%;
-    max-width: 50vw;
-    max-height: unset;
-  }
-}
-
 img.birthday {
   max-height: 40vh;
 }
 
 .text {
   padding: 1em;
+  height: 100%;
+  box-sizing: border-box;
   color: #333; /* Adjusted text color */
+  overflow: auto;
 }
 
 .muted {
@@ -79,4 +60,15 @@ img.birthday {
 
 body.play-music {
   animation: fadeIn 2s ease-in-out; /* Adjust the animation duration and timing function as needed */
+}
+
+@media only screen and (min-width: 640px) {
+  .card {
+    flex-direction: row-reverse;
+  }
+  .card img.birthday {
+    height: 100%;
+    max-width: 50vw;
+    max-height: unset;
+  }
 }
